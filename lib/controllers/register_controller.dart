@@ -21,15 +21,6 @@ class RegisterController extends GetxController {
   set password(String value) => this.passwordC.text = value;
   set confirmation(String value) => this.confirmationC.text = value;
 
-  @override
-  void onClose() {
-    this.usernameC.dispose();
-    this.emailC.dispose();
-    this.passwordC.dispose();
-    this.confirmationC.dispose();
-    super.onClose();
-  }
-
   String? validateConfirmationPasswd(String? value) {
     if (value == null || value.isEmpty) {
       return 'This field must be filled';

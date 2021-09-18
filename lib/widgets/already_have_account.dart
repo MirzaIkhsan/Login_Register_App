@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_register_app/pages/login/login_page.dart';
-import 'package:login_register_app/pages/register/register_page.dart';
 
+import '../pages/login/login_page.dart';
+import '../pages/register/register_page.dart';
 import '../constants/palletes.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
