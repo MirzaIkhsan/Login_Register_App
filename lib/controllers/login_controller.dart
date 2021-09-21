@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_register_app/services/user_services.dart';
+
+import '../constants/controllers.dart';
+import '../pages/profile/profile_page.dart';
+import '../services/user_services.dart';
 
 class LoginController extends GetxController {
   static LoginController instance = Get.put(LoginController());
@@ -21,7 +24,8 @@ class LoginController extends GetxController {
       final response = await UserService.login(email, password);
 
       if (response.value != null) {
-        //// Todo: Goto the next page
+        userController.user = response.value!;
+        Get.off(() => ProfilePage());
       } else {
         //// Todo: Give warn
       }
