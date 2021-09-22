@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_register_app/pages/change_profile/change_profile_page.dart';
-import 'package:login_register_app/widgets/custom_text_button.dart';
-import 'package:login_register_app/widgets/user_info.dart';
 
+import '../../pages/change_profile/change_profile_page.dart';
+import '../../widgets/custom_text_button.dart';
+import '../../widgets/user_info.dart';
 import '../../constants/controllers.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -93,17 +93,11 @@ class ProfilePage extends StatelessWidget {
             ////
             //// User info
             ////
-            Obx(
-              () => UserInfo(title: 'Name', text: userController.name!),
-            ),
-            // Obx(
-            //   () => UserInfo(title: 'Username', text: userController.username!),
-            // ),
-            // Obx(
-            //   () => UserInfo(title: 'Email', text: userController.email!),
-            // ),
+            Obx(() => UserInfo(title: 'Name', text: userController.name!)),
+            Obx(() =>
+                UserInfo(title: 'Username', text: userController.username!)),
+            Obx(() => UserInfo(title: 'Email', text: userController.email!)),
 
-            // SizedBox(height: 20),
             Spacer(),
 
             ////

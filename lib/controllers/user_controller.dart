@@ -14,7 +14,4 @@ class UserController extends GetxController {
   String? get profilePhotoUrl => this.user.profilePhotoUrl;
 
   set user(User user) => this._user.value = user;
-  set name(String? name) => this._user.value.name = name;
-  // set username(String username) => this._user.value.username = username;
-  // set profilePhotoUrl(String url) => this._user.value.profilePhotoUrl = url;
 }

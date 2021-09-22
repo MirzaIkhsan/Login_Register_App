@@ -3,6 +3,12 @@ import '../models/api_return_value.dart';
 import '../models/user.dart';
 
 class UserService {
+  // static Future<ApiReturnValue<User>> changeProfile({
+
+  // }) async {
+
+  // }
+
   static Future<ApiReturnValue<User>> login(
     String email,
     String password,

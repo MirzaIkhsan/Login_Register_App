@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class UserInfo extends StatelessWidget {
   final String title;
   final String text;
+  
   const UserInfo({
     Key? key,
     required this.title,

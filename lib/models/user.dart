@@ -12,10 +12,25 @@ class User {
     this.profilePhotoUrl,
   });
 
-  set name(String? name) => this.name = name;
-  set username(String? username) => this.username = username;
-  set email(String? email) => this.email = email;
-  set profilePhotoUrl(String? url) => this.profilePhotoUrl = url;
+  User copyWith({
+    String? name,
+    String? username,
+    String? email,
+    String? profilePhotoUrl,
+  }) {
+    return User(
+      name: property(name, this.name),
+      username: property(username, this.username),
+      email: property(email, this.email),
+      profilePhotoUrl: property(profilePhotoUrl, this.profilePhotoUrl),
+    );
+  }
+
+  String? property(String? newProperti, String? properti) {
+    return (newProperti == null || newProperti.isEmpty)
+        ? properti
+        : newProperti;
+  }
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
