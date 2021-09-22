@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register_app/services/user_services.dart';
 
 import '../../constants/controllers.dart';
 import '../../widgets/custom_text_button.dart';
@@ -34,7 +35,6 @@ class ChangeProfilePage extends StatelessWidget {
                       onSaved: (value) {
                         if (value != null && value.isNotEmpty) {
                           _nameController.text = value;
-                          print(_nameController.text);
                         }
                       },
                     ),
@@ -45,7 +45,6 @@ class ChangeProfilePage extends StatelessWidget {
                       onSaved: (value) {
                         if (value != null && value.isNotEmpty) {
                           _usernameController.text = value;
-                          print(_usernameController.text);
                         }
                       },
                     ),
@@ -68,6 +67,7 @@ class ChangeProfilePage extends StatelessWidget {
                     name: _nameController.text,
                     username: _usernameController.text,
                   );
+                  UserService.changeProfile(userController.user);
                 }
               },
             ),

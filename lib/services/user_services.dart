@@ -1,13 +1,31 @@
+import 'package:dio/dio.dart';
+
 import '../services/services.dart';
 import '../models/api_return_value.dart';
 import '../models/user.dart';
 
 class UserService {
-  // static Future<ApiReturnValue<User>> changeProfile({
+  static Future<ApiReturnValue<User>> changeProfile(User user) async {
+    final url = BASEURL + 'user';
 
-  // }) async {
+    final headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${User.token}'
+    };
 
-  // }
+    final data = {'name': user.name, 'username': user.username};
+
+    var response =
+        await dio.post(url, data: data, options: Options(headers: headers));
+
+    if (response.statusCode != 200) {
+      return ApiReturnValue(message: 'Failed to update the user');
+    }
+
+    User _user = User.fromJson(response.data['data']);
+
+    return ApiReturnValue(value: _user);
+  }
 
   static Future<ApiReturnValue<User>> login(
     String email,
