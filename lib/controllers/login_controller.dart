@@ -6,8 +6,6 @@ import '../pages/profile/profile_page.dart';
 import '../services/user_services.dart';
 
 class LoginController extends GetxController {
-  static LoginController instance = Get.put(LoginController());
-
   late GlobalKey<FormState> key = GlobalKey<FormState>();
   late TextEditingController emailC = TextEditingController();
   late TextEditingController passwordC = TextEditingController();

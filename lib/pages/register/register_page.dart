@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:login_register_app/controllers/register_controller.dart';
 
 import '../../pages/templates/login_register_template.dart';
 import '../../widgets/outline_text_form_field.dart';
@@ -10,42 +12,44 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegisterController());
+
     return LoginRegisterTemplate(
-      formKey: registerController.key,
+      formKey: controller.key,
       page: 'Register',
       imageBackground: 'assets/background/login.png',
       children: [
         OutlineTextFormField(
           hintText: 'Username',
-          controller: registerController.usernameC,
-          onSaved: (value) => registerController.username = value!,
+          controller: controller.usernameC,
+          onSaved: (value) => controller.username = value!,
           validator: validateTextForm,
         ),
         SizedBox(height: 15),
         OutlineTextFormField(
           hintText: 'Email',
-          controller: registerController.emailC,
-          onSaved: (value) => registerController.email = value!,
+          controller: controller.emailC,
+          onSaved: (value) => controller.email = value!,
           validator: validateEmail,
         ),
         SizedBox(height: 15),
         OutlineTextFormField(
           hintText: 'Password',
           isObsecure: true,
-          controller: registerController.passwordC,
-          onSaved: (value) => registerController.password = value!,
+          controller: controller.passwordC,
+          onSaved: (value) => controller.password = value!,
           validator: validatePassword,
         ),
         SizedBox(height: 15),
         OutlineTextFormField(
           hintText: 'Confirmation',
           isObsecure: true,
-          controller: registerController.confirmationC,
-          onSaved: (value) => registerController.confirmation = value!,
-          validator: registerController.validateConfirmationPasswd,
+          controller: controller.confirmationC,
+          onSaved: (value) => controller.confirmation = value!,
+          validator: controller.validateConfirmationPasswd,
         ),
       ],
-      onSubmit: registerController.onSubmit,
+      onSubmit: controller.onSubmit,
     );
   }
 }

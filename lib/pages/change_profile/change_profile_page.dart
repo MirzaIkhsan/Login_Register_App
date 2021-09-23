@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:login_register_app/services/user_services.dart';
+import 'package:get/get.dart';
 
-import '../../constants/controllers.dart';
 import '../../widgets/custom_text_button.dart';
 import '../../widgets/outline_text_form_field.dart';
+import '../../controllers/change_profile_controller.dart';
 
 class ChangeProfilePage extends StatelessWidget {
   const ChangeProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-    final _nameController = TextEditingController();
-    final _usernameController = TextEditingController();
+    final controller = Get.put(ChangeProfileController());
 
     return SafeArea(
       child: Scaffold(
@@ -26,27 +24,19 @@ class ChangeProfilePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Form(
-                key: _formKey,
+                key: controller.key,
                 child: Column(
                   children: [
                     OutlineTextFormField(
                       hintText: 'Name',
-                      controller: _nameController,
-                      onSaved: (value) {
-                        if (value != null && value.isNotEmpty) {
-                          _nameController.text = value;
-                        }
-                      },
+                      controller: controller.nameC,
+                      onSaved: (value) => controller.name = value!,
                     ),
                     SizedBox(height: 20),
                     OutlineTextFormField(
                       hintText: 'Username',
-                      controller: _usernameController,
-                      onSaved: (value) {
-                        if (value != null && value.isNotEmpty) {
-                          _usernameController.text = value;
-                        }
-                      },
+                      controller: controller.usernameC,
+                      onSaved: (value) => controller.username = value!,
                     ),
                   ],
                 ),
@@ -60,16 +50,7 @@ class ChangeProfilePage extends StatelessWidget {
             ////
             CustomTextButton(
               text: 'Submit',
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  userController.user = userController.user.copyWith(
-                    name: _nameController.text,
-                    username: _usernameController.text,
-                  );
-                  UserService.changeProfile(userController.user);
-                }
-              },
+              onPressed: controller.onSubmit,
             ),
 
             SizedBox(height: 50),

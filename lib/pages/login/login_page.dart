@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:login_register_app/utils/utils.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/login_controller.dart';
+import '../../utils/utils.dart';
 import '../../pages/templates/login_register_template.dart';
 import '../../widgets/outline_text_form_field.dart';
-import '../../constants/controllers.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+
     return LoginRegisterTemplate(
-      formKey: loginController.key,
+      formKey: controller.key,
       page: 'Login',
       imageBackground: 'assets/background/login.png',
       children: [
         OutlineTextFormField(
           hintText: 'Email',
-          controller: loginController.emailC,
-          onSaved: (value) => loginController.email = value!,
+          controller: controller.emailC,
+          onSaved: (value) => controller.email = value!,
           validator: validateEmail,
         ),
         SizedBox(height: 15),
         OutlineTextFormField(
           hintText: 'Password',
           isObsecure: true,
-          controller: loginController.passwordC,
-          onSaved: (value) => loginController.password = value!,
+          controller: controller.passwordC,
+          onSaved: (value) => controller.password = value!,
           validator: validatePassword,
         ),
       ],
-      onSubmit: loginController.onSubmit,
+      onSubmit: controller.onSubmit,
     );
   }
 }

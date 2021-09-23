@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_register_app/constants/controllers.dart';
 
 import '../pages/profile/profile_page.dart';
 import '../services/user_services.dart';
 
 class RegisterController extends GetxController {
-  static RegisterController instance = Get.put(RegisterController());
-
   GlobalKey<FormState> key = GlobalKey<FormState>();
   TextEditingController usernameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -38,6 +37,7 @@ class RegisterController extends GetxController {
       final response = await UserService.register(username, email, password);
 
       if (response.value != null) {
+        userController.user = response.value!;
         Get.to(() => ProfilePage());
       } else {
         //// Todo: Give warn
